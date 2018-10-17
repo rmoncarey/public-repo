@@ -18,6 +18,16 @@ class _MovieDetail extends Component {
   * the url to get movie details from a movie id: `${SERVER_URL}/movies/${id}`
   */
 
+ componentDidMount() {
+  this.fetchMovieDetails();
+}
+
+async fetchMovieDetails() {
+  const {data: movie} = await axios.get(`${SERVER_URL}/movies/${this.props.match.params.id}`);
+  this.setState({movie});
+  // this don't work, have to change ovie by the result of get
+  // axios.get(`${SERVER_URL}/movies/${this.props.match.params.id}`).then(this.setState({data: movie}))
+}
   /*
   * TODO: handle component update lifecycle
   * */
@@ -51,18 +61,21 @@ class _MovieDetail extends Component {
               <p>{overview}</p>
               <button
                 className="btn btn-primary"
-                onClick={() => alert('Cannot go back')}
+                onClick={() => {this.props.history.goBack();}}
               >
                 Back
               </button>
               {loggedIn && (
-                <Link to={`/movies/${id}/comments`}>See the comments</Link>
+                // <Link to={`/movies/${id}/comments`}>See the comments</Link>
+                // Fix to can go back directly to Main if you click on See comments
+                <a onClick={() => this.props.history.replace(`/movies/${id}/comments`)}>See the comments</a>
               )}
             </div>
             <div className="card-block-footer">
-              /* * TODO: add a subroute on path `/movies/:id/comments` to render
+              <Route path={`${this.props.match.url}/comments`} render={props => <MovieComments {...props} movieId={this.props.match.params.id} />}/>
+              {/* * TODO: add a subroute on path `/movies/:id/comments` to render
               MovieComments component * the component requires a movieId
-              property * */
+              property * */ }
             </div>
           </div>
         </div>

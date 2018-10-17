@@ -15,12 +15,12 @@ import {connect} from 'react-redux';
 * which will be handled by the <ErrorWatcher/> component
 **/
 
-export const ProtectedRoute = (
-  <div> {"I think there's something wrong with this higher order ...."} </div>
-);
+const _ProtectedRoute = ({loggedIn, ...rest}) => loggedIn ? <Route {...rest}/> : <Redirect to={"/"}/>
+  // <div> {"I think there's something wrong with this higher order ...."} </div>
 
-// const mapStateToProps = ({auth}) => ({
-//   loggedIn: auth.loggedIn
-// });
-//
-// export const ProtectedRoute = connect(mapStateToProps)(_ProtectedRoute);
+
+const mapStateToProps = ({auth}) => ({
+  loggedIn: auth.loggedIn
+});
+
+export const ProtectedRoute = connect(mapStateToProps)(_ProtectedRoute);

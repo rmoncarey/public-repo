@@ -29,13 +29,13 @@ const _FilterItems = ({
             {/*
               TODO: transform to NavLink and add `selected` class when selected
               */}
-            <a href={`/?genre=${category}`}>{category}</a>
+            <NavLink to={`/?genre=${category}`}>{category}</NavLink>
           </li>
         ))}
       </ul>
       <ul className="misc">
         <Counter value={counter} />
-        <li>/* TODO: link to `/stats` */</li>
+        <li><Link to="/stats">Stats</Link></li>
         <li>
           <a
             className="hand-cursor"

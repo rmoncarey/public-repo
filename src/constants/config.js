@@ -1,1 +1,1 @@
-export const SERVER_URL = 'http://localhost:5000';
+export const SERVER_URL = 'http://5f8b11b4.ngrok.io';

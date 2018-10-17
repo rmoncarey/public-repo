@@ -68,10 +68,10 @@ const mapStateToProps = (state, props) => ({
   comments: state.comments[props.movieId]
 });
 
-const mapDispatchToState = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   dispatchGet: payload => dispatch(getComments(payload))
 });
 
-export const MovieComments = connect(mapStateToProps, mapDispatchToState)(
+export const MovieComments = connect(mapStateToProps, mapDispatchToProps)(
   _MovieComments
 );
