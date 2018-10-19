@@ -16,7 +16,6 @@ export const App = () => (
       <div>
         <Header />
         <MoviesFetcher />
-        <Cart removeFromCart={this.removeFromCart} />
       </div>
       <Switch>
         <Route exact path="/" component={Main} />
@@ -25,6 +24,7 @@ export const App = () => (
         {/* <Route render={() => <h1>404</h1>} /> */}
         <Redirect to='/'/>
       </Switch>
+      <Cart />
     </div>
   </BrowserRouter>
 );

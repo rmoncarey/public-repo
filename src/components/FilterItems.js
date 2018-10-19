@@ -29,7 +29,8 @@ const _FilterItems = ({
             {/*
               TODO: transform to NavLink and add `selected` class when selected
               */}
-            <NavLink to={`/?genre=${category}`}>{category}</NavLink>
+            <NavLink isActive={() => selected}
+              activeClassName="selected" to={`/?genre=${category}`}>{category}</NavLink>
           </li>
         ))}
       </ul>
@@ -69,5 +70,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export const FilterItems = connect(mapStateToProps, mapDispatchToProps)(
-  _FilterItems
+  withRouter(_FilterItems)
 );
